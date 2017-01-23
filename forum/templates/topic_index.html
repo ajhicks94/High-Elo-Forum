@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+{% if latest_post_list %}
+	<ul>
+	{% for post in latest_post_list %}
+		<li>
+			<a href={% url 'forum:detail' post.id %}>{{ post.title }}</a><br>
+			Started by {{ post.author }}, {{ post.created_on }}
+		</li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No posts created yet.</p>
+{% endif %}
+</body>
+</html>
