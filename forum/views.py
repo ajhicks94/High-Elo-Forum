@@ -8,19 +8,40 @@ from .forms import NameForm
 
 #need to show the categories and their subforums
 class CategoryView(generic.ListView):
-    model = Category
+    model = Forum
     template_name = 'category.html'
     context_object_name = 'category_list'
 
     def get_queryset(self):
-        return Forum.objects.all().order_by('position')
+        return Category.objects.prefetch_related("forums").all()
 
 #We've clicked on a forum and need to see its sub-forums if it has any,
 #and its threads if it does not.
 class ForumView(generic.ListView):
     template_name = 'forum.html'
-    context_object_name = 'forum_list'
+    context_object_name = 'thread_list'
 
+    def get_context_data(self, **kwargs):
+        context = super(ForumView, self).get_context_data(**kwargs)
+        forum = get_object_or_404(Forum, id=self.kwargs['pk'])
+        context['forum'] = forum
+        return context
+
+    def get_queryset(self):
+        return Thread.objects.filter(forum=self.kwargs['pk'])
+
+class ThreadView(generic.ListView):
+    template_name = 'thread.html'
+    context_object_name = 'post_list'
+
+    def get_context_data(self, **kwargs):
+        context = super(ThreadView, self).get_context_data(**kwargs)
+        thread = get_object_or_404(Thread, id=self.kwargs['pk'])
+        context['thread'] = thread
+        return context
+
+    def get_queryset(self):
+        return Post.objects.filter(thread=self.kwargs['pk'])
 
 class TopicIndexView(generic.ListView):
     template_name = 'topic_index.html'
@@ -32,11 +53,6 @@ class TopicIndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Post
     template_name = 'detail.html'
-
-#    def get_context_data(self, **kwargs):
-#        context = super(DetailView, self).get_context_data(**kwargs)
-#
-#        return context
 
 #test function for forms
 def get_name(request):

@@ -9,7 +9,7 @@ class CategoryAdmin(admin.ModelAdmin):
    list_display = ('name', 'position') 
 
 class ForumAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'thread_count', 'post_count')
+    list_display = ('name', 'slug', 'description', 'category', 'thread_count', 'post_count')
 
 class ThreadAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'forum', 'created', 'modified', 'post_count', 'sticky')

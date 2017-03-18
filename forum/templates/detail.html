@@ -1,9 +1,14 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+
 <html>
 	<h1>{{ post.title }}</h1>
 <body>
-	<p>{{ post.body }}</p>
-	<p>This post's id is {{post.id}}</p>
-
+  <p>{{ post.body }}</p>
+  <p>This post's id is {{post.id}}</p>
 </body>
-
 </html>
+
+{% endblock content %}

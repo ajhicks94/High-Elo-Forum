@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<html>
+	<h1 style="color:green">{{thread.forum.name}}</h1>
+	<h2>{{thread.title}}</h2>
+	<small>Started by {{thread.author}}, {{ thread.created }}</small>
+
+	{% if post_list %}
+		<ul>
+		{% for post in post_list %}
+			<li>{{ post.body }}</li>
+			{{ post.created }}
+		{% endfor %}
+		</ul>
+	{% else %}
+  <p>No posts in this thread yet.</p>
+	{% endif %}
+</html>
+
+{% endblock content %}

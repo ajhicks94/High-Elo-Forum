@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+{% block content %}
+
+<html>
+	<h1>{{forum.name}} - {{forum.description}}</h1>
+	{% if thread_list %}
+		<ul>
+  	{% for thread in thread_list %}
+		<li><a href="{% url 'forum:thread' thread.pk thread.slug %}">{{ thread.title }}</a> - {{ thread.post_count }} posts.</li>
+	  {% endfor %}
+  	</ul>
+	{% else %}
+	  <p>No threads created yet.</p>
+	{% endif %}
+</html>
+
+{% endblock content %}

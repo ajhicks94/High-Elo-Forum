@@ -1,3 +1,5 @@
 *.sqlite3
 *.pyc
 *.swp
+forum/migrations/
+*.stackdump
