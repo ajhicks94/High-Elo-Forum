@@ -1,27 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-	.container{
-		position: relative;
-	}
-
-	.bottomright{
-		position: absolute;
-		bottom: 0px;
-		right: 0px;
-		font-size: 18px;
-	}
-</style>
-</head>
-<body>
-	<div class="page-header">
-		<h1><a href="{% url 'forum:category'%}">High-Elo Forum Project</a></h1>
-	</div>
-	{% block content %}
-	{% endblock %}
-	<div class="bottomright">
-		<br><br>Created and Maintained by Anthony Hicks.
-	</div>
-</body>
+	<head>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<style>
+		html, body{
+			font-family: Roboto, sans-serif;
+			background: #1f8ecd;
+			margin: 0;
+			height: 100%;
+			overflow: hidden;
+		}
+		body{
+			margin: 0;
+			padding: 0;
+		}
+		div:last-child{
+			height: 100%;
+		}
+		.site{
+			width: 75%;
+			margin: 0 auto;
+			background: #e5e9e9;
+			color: #242929;
+		}
+		.header{
+			color: white;
+			text-align: center;
+		}
+		.header a, .header a:hover, .header a:visited{
+			text-decoration: none;
+			color: #e5e9e9;
+		}
+		a:visited, a:link, a:hover, a:active{
+			text-decoration: none;
+			color: #242929;
+		}
+		.createdFooter{
+			position: absolute;
+			bottom: 0px;
+			right: 0px;
+			font-size: 13px;
+			color: #e5e9e9;
+		}
+	</style>
+	</head>
+	<body>
+			<div class="header">
+				<h1><a href="{% url 'forum:category'%}">High-Elo Forum Project</a></h1>
+			</div>
+			<div class="site">
+			{% block content %}
+			{% endblock content %}
+			<div class="createdFooter">Created and Maintained by Anthony Hicks.</div>
+			</div>
+	</body>
 </html>

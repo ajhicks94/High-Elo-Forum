@@ -6,6 +6,22 @@ from django.utils import timezone
 from .models import Category, Forum, Thread, Post
 from .forms import NameForm
 
+#TODO: REMOVE *VIEW SUFFIX, WERE IN THE FUCKING VIEWS FILE, OFC IT'S A VIEW
+#TODO: CLEAN UP OVER-IMPORTED LIBRARIES/ITEMS
+#
+#
+#
+#
+#
+#
+#
+#
+
+
+
+
+
+
 #need to show the categories and their subforums
 class CategoryView(generic.ListView):
     model = Forum
@@ -54,16 +70,12 @@ class DetailView(generic.DetailView):
     model = Post
     template_name = 'detail.html'
 
-#test function for forms
-def get_name(request):
-    if request.method == 'POST':
-        form = NameForm(request.POST)
+class AddPostView(generic.FormView):
+    form_class = NameForm #CHANGE THIS FORM
+    success_url = '/forum/'
+    template_name = 'name.html'
 
-        if form.is_valid():
-            return HttpResponseRedirect('/thanks/')
-    else:
-        form = NameForm()
-
-    return render(request, 'name.html', {'form': form})
-
-# Create your views here.
+    def form_valid(self, form):
+        #DO STUFF HERE
+        #form.send_email()
+        return super(AddPostView, self).form_valid(form)
