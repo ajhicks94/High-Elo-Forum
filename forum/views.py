@@ -4,7 +4,7 @@ from django.views import generic
 from django.utils import timezone
 
 from .models import Category, Forum, Thread, Post
-from .forms import NameForm
+from .forms import NameForm, ThreadForm
 
 #TODO: REMOVE *VIEW SUFFIX, WERE IN THE FUCKING VIEWS FILE, OFC IT'S A VIEW
 #TODO: CLEAN UP OVER-IMPORTED LIBRARIES/ITEMS
@@ -69,6 +69,15 @@ class TopicIndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Post
     template_name = 'detail.html'
+
+class AddThreadView(generic.FormView):
+    form_class = ThreadForm
+    success_url = '/forum/'
+    template_name = 'add_thread.html'
+
+    def form_valid(self, form):
+        #DO STUFF HERE
+        return super(AddThreadView, self).form_valid(form)
 
 class AddPostView(generic.FormView):
     form_class = NameForm #CHANGE THIS FORM

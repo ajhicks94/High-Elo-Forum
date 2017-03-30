@@ -45,13 +45,11 @@
 	</style>
 	</head>
 	<body>
-			<div class="header">
-				<h1><a href="{% url 'forum:category'%}">High-Elo Forum Project</a></h1>
-			</div>
+		{% include "header.html" %}
 			<div class="site">
-			{% block content %}
-			{% endblock content %}
-			<div class="createdFooter">Created and Maintained by Anthony Hicks.</div>
+				{% block content %}
+				{% endblock content %}
+				{% include "footer.html" %}
 			</div>
 	</body>
 </html>
