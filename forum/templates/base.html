@@ -6,22 +6,27 @@
 		html, body{
 			font-family: Roboto, sans-serif;
 			background: #1f8ecd;
-			margin: 0;
-			height: 100%;
-			overflow: hidden;
 		}
 		body{
 			margin: 0;
 			padding: 0;
 		}
-		div:last-child{
-			height: 100%;
-		}
-		.site{
+		.siteContainer{
 			width: 75%;
 			margin: 0 auto;
 			background: #e5e9e9;
 			color: #242929;
+		}
+		.cat{
+			background: beige;
+			width: 90%;
+			margin: 0 auto;
+		}
+		.catHeader li{
+			list-style-type: none;
+		}
+		.catForums ul{
+			list-style-type: square;	
 		}
 		.header{
 			color: white;
@@ -36,9 +41,6 @@
 			color: #242929;
 		}
 		.createdFooter{
-			position: absolute;
-			bottom: 0px;
-			right: 0px;
 			font-size: 13px;
 			color: #e5e9e9;
 		}
@@ -46,7 +48,7 @@
 	</head>
 	<body>
 		{% include "header.html" %}
-			<div class="site">
+			<div class="siteContainer">
 				{% block content %}
 				{% endblock content %}
 				{% include "footer.html" %}

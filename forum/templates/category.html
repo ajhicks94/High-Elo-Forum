@@ -2,20 +2,23 @@
 
 {% block content %}
 
-<h1>Categories</h1>
 {% if category_list %}
-  <ul>
-  {% for category in category_list %}
-    <li>{{ category.name }}</li>
-    <ul>
-		<div class="forums">
-    {% for forum in category.forums.all %}
-      <li><a href="{% url 'forum:forum' forum.id forum.slug %}">{{forum.name}}</a> - {{forum.description}}</li>
-    {% endfor %}
-		</div>
-    </ul>
-  {% endfor %}
-  </ul>
+	<div class="cat">
+  	<ul>
+		  {% for category in category_list %}
+				<div class="catHeader">
+					<li><h3>{{ category.name }}</h3></li>
+				    <ul>
+					    {% for forum in category.forums.all %}
+								<div class="catForums">
+					     	 <li><a href="{% url 'forum:forum' forum.id forum.slug %}">{{forum.name}}</a> - {{forum.description}}</li>
+								</div>
+					    {% endfor %}
+				    </ul>
+				</div>
+		  {% endfor %}
+	  </ul>
+	</div>
 {% else %}
   <p>No categories created yet.</p>
 {% endif %}
