@@ -37,7 +37,7 @@ class Category(models.Model): #ie. Junkies, Non-Junkies
 class Forum(models.Model): #ie. Ask a Gladiator -> General Questions, LoL -> Guides
 
     name         = models.CharField(max_length=50)
-    slug         = models.SlugField(max_length=55, editable=False)
+    slug         = models.SlugField(max_length=55, editable=True)
     category     = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="forums")
     position     = models.IntegerField(default=0)
     description  = models.CharField(max_length=255, default='Description goes here')
@@ -51,6 +51,8 @@ class Forum(models.Model): #ie. Ask a Gladiator -> General Questions, LoL -> Gui
         if not self.pk:
             self.slug = slugify(self.name)
             super(Forum, self).save(*args, **kwargs)
+        else:
+            super(Forum, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -60,7 +62,7 @@ class Thread(models.Model): #ie. FULL GUIDE TO HOW TO BEAT DARIUS THE COCKMUNCHE
     forum      = models.ForeignKey(Forum, on_delete=models.CASCADE, related_name="threads")
     author     = models.ForeignKey(settings.AUTH_USER_MODEL)
     title      = models.CharField(max_length=90)
-    slug       = models.SlugField(max_length=95, editable=False)
+    slug       = models.SlugField(max_length=95, editable=True)
     created    = models.DateTimeField(auto_now_add=True)
     modified   = models.DateTimeField(auto_now=True)
     post_count = models.IntegerField(default=0)
@@ -69,6 +71,8 @@ class Thread(models.Model): #ie. FULL GUIDE TO HOW TO BEAT DARIUS THE COCKMUNCHE
     def save(self, *args, **kwargs):
         if not self.pk:
             self.slug = slugify(self.title)
+            super(Thread, self).save(*args, **kwargs)
+        else:
             super(Thread, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -91,7 +95,9 @@ class Post(models.Model): #Wow I never thought about it this way man, great job!
     def save(self, *args, **kwargs):
         if not self.pk:
             self.increase_post_count()
-            super(Post, self).save()
+            super(Post, self).save(*args, **kwargs)
+        else:
+            super(Post, self).save(*args, **kwargs)
 
 #    def delete(self, *args, **kwargs):
 #        self.decrease_post_count()

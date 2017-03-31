@@ -1,24 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
-<style>
-.threads a{
-	text-decoration: none;
-}
-.threads a:hover{
-	color: cornflowerblue;
-	text-decoration: underline;
-}
-</style>
-	<h1>{{forum.name}} - {{forum.description}}</h1>
-	{% if thread_list %}
-		<ul>
-			<div class="threads">
+
+<h1>{{forum.name}}</h1>
+{% if thread_list %}
+	<ul>
+		<div class="threads">
 	  	{% for thread in thread_list %}
-				<li><a href="{% url 'forum:thread' thread.pk thread.slug %}">{{ thread.title }}</a> - {{ thread.post_count }} posts.</li>
+				<li>
+					<a href="{% url 'forum:thread' thread.pk thread.slug %}">{{ thread.title }}</a> - 
+					{% if thread.post_count == 1 %}	
+						{{ thread.post_count }} reply.
+					{% else %}
+						{{ thread.post_count }} replies.
+					{% endif %}		
+				</li>
 	  	{% endfor %}
-			</div>
-  	</ul>
-	{% else %}
-	  <p>No threads created yet.</p>
-	{% endif %}
+		</div>
+ 	</ul>
+{% else %}
+  <p>No threads created yet.</p>
+{% endif %}
+
 {% endblock content %}

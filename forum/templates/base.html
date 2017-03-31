@@ -11,13 +11,31 @@
 			margin: 0;
 			padding: 0;
 		}
+		.header{
+			color: white;
+			text-align: center;
+		}
+		a:visited, a:link, a:active{
+			text-decoration: none;
+			color: #242929;
+		}
+		a:hover{
+			text-decoration:underline;
+		}
+		.header a, .header a:hover, .header a:visited{
+			text-decoration: none;
+			color: #e5e9e9;
+		}
 		.siteContainer{
+			padding: 25px;
 			width: 75%;
 			margin: 0 auto;
 			background: #e5e9e9;
 			color: #242929;
 		}
 		.cat{
+			padding: 0px;
+			border: black;
 			background: beige;
 			width: 90%;
 			margin: 0 auto;
@@ -25,22 +43,22 @@
 		.catHeader li{
 			list-style-type: none;
 		}
-		.catForums ul{
+		.catForums li{
 			list-style-type: square;	
 		}
-		.header{
-			color: white;
-			text-align: center;
+		.catForums li a{
+			color: #1f8ecd;
 		}
-		.header a, .header a:hover, .header a:visited{
-			text-decoration: none;
-			color: #e5e9e9;
+		.catForums li:nth-child(odd){
+			background: bisque;
 		}
-		a:visited, a:link, a:hover, a:active{
-			text-decoration: none;
-			color: #242929;
+		.threads a:hover{
+			color: #1f8ecd;
 		}
 		.createdFooter{
+			position: absolute;
+			right: 0px;
+			bottom: 0px;
 			font-size: 13px;
 			color: #e5e9e9;
 		}
@@ -48,10 +66,10 @@
 	</head>
 	<body>
 		{% include "header.html" %}
-			<div class="siteContainer">
+		<div class="siteContainer">
 				{% block content %}
 				{% endblock content %}
-				{% include "footer.html" %}
-			</div>
+		</div>
+		{% include "footer.html" %}
 	</body>
 </html>

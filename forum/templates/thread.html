@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-	
-	<h1>{{thread.forum.name}}</h1>
-	<h2>{{thread.title}}</h2>
+
+<div class="threadForumHeader">
+	<h1><a href="{% url 'forum:forum' thread.forum.pk thread.forum.slug %}">{{ thread.forum.name }}</a></h1>
+</div>
+<h2>{{thread.title}}</h2>
 	<small>Started by {{thread.author}}, {{ thread.created }}</small>
 	<form action="{% url 'forum:name' %}">
 		<input type="submit" value="Post a Reply" />

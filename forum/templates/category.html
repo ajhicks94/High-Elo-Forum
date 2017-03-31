@@ -2,25 +2,26 @@
 
 {% block content %}
 
-{% if category_list %}
-	<div class="cat">
+<div class="cat">
+	{% if category_list %}
   	<ul>
 		  {% for category in category_list %}
 				<div class="catHeader">
 					<li><h3>{{ category.name }}</h3></li>
 				    <ul>
-					    {% for forum in category.forums.all %}
-								<div class="catForums">
-					     	 <li><a href="{% url 'forum:forum' forum.id forum.slug %}">{{forum.name}}</a> - {{forum.description}}</li>
-								</div>
-					    {% endfor %}
+							<div class="catForums">
+					    	{% for forum in category.forums.all %}
+								<li><a href="{% url 'forum:forum' forum.id forum.slug %}">{{forum.name}}</a><br>
+									<small>{{forum.description}}</small></li>
+						    {% endfor %}
+							</div>
 				    </ul>
 				</div>
 		  {% endfor %}
 	  </ul>
-	</div>
-{% else %}
-  <p>No categories created yet.</p>
-{% endif %}
+	{% else %}	
+	  <p>No categories created yet.</p>
+	{% endif %}
+</div>
 
 {% endblock content %}
