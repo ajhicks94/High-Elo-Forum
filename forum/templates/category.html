@@ -2,7 +2,8 @@
 
 {% block content %}
 
-<div class="cat">
+
+	<div class="mainHeader"><h2>Categories</h2></div>
 	{% if category_list %}
   	<ul>
 		  {% for category in category_list %}
@@ -12,7 +13,7 @@
 							<div class="catForums">
 					    	{% for forum in category.forums.all %}
 								<li><a href="{% url 'forum:forum' forum.id forum.slug %}">{{forum.name}}</a><br>
-									<small>{{forum.description}}</small></li>
+									<small><i>{{forum.description}}</i></small></li>
 						    {% endfor %}
 							</div>
 				    </ul>
@@ -22,6 +23,6 @@
 	{% else %}	
 	  <p>No categories created yet.</p>
 	{% endif %}
-</div>
+
 
 {% endblock content %}

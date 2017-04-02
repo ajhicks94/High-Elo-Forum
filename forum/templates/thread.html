@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-
-<div class="threadForumHeader">
-	<h1><a href="{% url 'forum:forum' thread.forum.pk thread.forum.slug %}">{{ thread.forum.name }}</a></h1>
+<div class="mainHeader">
+	<h3><a href="{% url 'forum:forum' thread.forum.pk thread.forum.slug %}">{{ thread.forum.name }}</a>: {{ thread.title }}</h3>
 </div>
-<h2>{{thread.title}}</h2>
-	<small>Started by {{thread.author}}, {{ thread.created }}</small>
+	<small><i>Started by {{thread.author}}, {{ thread.created }}</i></small>
 	<form action="{% url 'forum:name' %}">
-		<input type="submit" value="Post a Reply" />
+		<input type="submit" value="Test Button: Post a Reply" />
 	</form>
 	{% if post_list %}
 		<ul>

@@ -3,3 +3,4 @@
 *.swp
 forum/migrations/
 *.stackdump
+*.vscode
