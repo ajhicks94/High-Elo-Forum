@@ -4,7 +4,7 @@ from django.views import generic
 from django.utils import timezone
 
 from .models import Category, Forum, Thread, Post
-from .forms import NameForm, ThreadForm
+from .forms import ThreadForm
 
 #TODO: REMOVE *VIEW SUFFIX, WERE IN THE FUCKING VIEWS FILE, OFC IT'S A VIEW
 #TODO: CLEAN UP OVER-IMPORTED LIBRARIES/ITEMS
@@ -16,10 +16,6 @@ from .forms import NameForm, ThreadForm
 #
 #
 #
-
-
-
-
 
 
 #need to show the categories and their subforums
@@ -79,12 +75,12 @@ class AddThreadView(generic.FormView):
         #DO STUFF HERE
         return super(AddThreadView, self).form_valid(form)
 
-class AddPostView(generic.FormView):
-    form_class = NameForm #CHANGE THIS FORM
-    success_url = '/forum/'
-    template_name = 'name.html'
-
-    def form_valid(self, form):
-        #DO STUFF HERE
-        #form.send_email()
-        return super(AddPostView, self).form_valid(form)
+#class AddPostView(generic.FormView):
+    #form_class = NameForm #CHANGE THIS FORM
+    #success_url = '/forum/'
+    #template_name = 'name.html'
+#
+    #def form_valid(self, form):
+        ##DO STUFF HERE
+        ##form.send_email()
+        #return super(AddPostView, self).form_valid(form)
