@@ -73,6 +73,10 @@ class AddThreadView(generic.FormView):
 
     def form_valid(self, form):
         #DO STUFF HERE
+        #new_Thread = Thread(title=form.fields['title'], body=form.fields['body'],
+        #                    forum=get_object_or_404(Forum, name=form.fields['forum']), author='Admin')
+
+        #new_Thread.save()
         return super(AddThreadView, self).form_valid(form)
 
 #class AddPostView(generic.FormView):

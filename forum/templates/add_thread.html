@@ -4,8 +4,10 @@
 <div class="mainHeader"><h3>Create Thread</h3></div>
 <form action="{% url 'forum:add_thread' %}" method="post">
 	{% csrf_token %}
-	{{ form }}
-	<!--<input type="submit" value="Submit" />-->
+	<div class="add_thread_forum">{{form.forum}}</div>
+	<div class="add_thread_title">{{form.title}}</div>
+	<div class="add_thread_body">{{form.body}}</div>
+	<input type="submit" value="Submit" />
 </form>
 
 {% endblock content%}
