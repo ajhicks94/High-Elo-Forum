@@ -26,20 +26,26 @@
 			text-align: center;
 		}
 		.headerLogin{
+			margin: 4px;
+			padding: 0px;
+			border-left: 1px black solid;
+			border-top: 1px black solid;
+			border-bottom: 1px black solid;
+			background: #413F3F;
 			position: absolute;
 			top: 0;
 			right: 10px;
-			width: 8.33%;
+			/*width: 10;/*8.33%;*/
 		}
 		a:visited, a:link, a:active{
 			text-decoration: none;
 			color: black;
 		}
-		a:hover{
+		a:hover, a:visited:hover{
 			text-decoration:underline;
 			color: darkslategray;
 		}
-		.header a, .header a:hover, .header a:visited{
+		.header a, .header a:visited, .header a:hover{
 			color: white;
 			text-decoration: none;
 		}
@@ -81,6 +87,24 @@
 			padding: 0px;
 			margin: 0 auto;	
 		}
+		.headerLogin ul{
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+		.headerLogin li{
+			border-right: 1px black solid;
+			float: left;			
+		}
+		.headerLogin a{
+			display: block;
+			text-align: center;
+			padding: 4px 28px;
+		}
+		.headerLogin li a:hover{
+			background-color: #252525
+		}
 		.mainHeader a{
 			color: white;
 		}
@@ -98,12 +122,6 @@
 		}
 		.threads a:hover{
 			color: darkslategray;
-		}
-		.add_thread_body{
-			
-		}
-		.add_thread_title{
-
 		}
 		.createdFooter{
 			position: absolute;

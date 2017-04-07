@@ -8,15 +8,6 @@ from .forms import ThreadForm
 
 #TODO: REMOVE *VIEW SUFFIX, WERE IN THE FUCKING VIEWS FILE, OFC IT'S A VIEW
 #TODO: CLEAN UP OVER-IMPORTED LIBRARIES/ITEMS
-#
-#
-#
-#
-#
-#
-#
-#
-
 
 #need to show the categories and their subforums
 class CategoryView(generic.ListView):
@@ -74,17 +65,8 @@ class AddThreadView(generic.FormView):
     def form_valid(self, form):
         #DO STUFF HERE
         #new_Thread = Thread(title=form.fields['title'], body=form.fields['body'],
-        #                    forum=get_object_or_404(Forum, name=form.fields['forum']), author='Admin')
+        #                    forum=get_object_or_404(Forum, name=form.fields['forum'].name), author='Admin')
 
-        #new_Thread.save()
         return super(AddThreadView, self).form_valid(form)
 
-#class AddPostView(generic.FormView):
-    #form_class = NameForm #CHANGE THIS FORM
-    #success_url = '/forum/'
-    #template_name = 'name.html'
-#
-    #def form_valid(self, form):
-        ##DO STUFF HERE
-        ##form.send_email()
-        #return super(AddPostView, self).form_valid(form)
+

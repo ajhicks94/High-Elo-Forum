@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <div class="header">
-	<div class="headerLogin">Log In | Sign Up</div>
+	<div class="headerLogin">
+		<ul>
+			<li><a href="{% url 'forum:category' %}">Log In</a></li>
+			<li><a href="{% url 'forum:category' %}">Sign Up</a></li>
+		</ul>
+	</div>
 	<h1><a href="{% url 'forum:category'%}">High-Elo Forum Project</a></h1>
 </div>
