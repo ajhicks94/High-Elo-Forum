@@ -52,10 +52,12 @@ class AddThread(generic.FormView):
     template_name = 'add_thread.html'
 
     def form_valid(self, form):
-        #DO STUFF HERE
+        #TODO: GRAB LOGGED IN USER AND SET AS THREAD AUTHOR INSTEAD OF ADMIN
         data = form.cleaned_data
         new_thread = Thread(title=data['title'], body=data['body'], forum=data['forum'], 
                             author=get_object_or_404(User, username='admin'))
         new_thread.save()
+
+        self.success_url = '/forum/thread/' + str(new_thread.id) + '-' + new_thread.slug
 
         return super(AddThread, self).form_valid(form)

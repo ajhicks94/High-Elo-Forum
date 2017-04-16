@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="mainHeader"><h3>Create Thread</h3></div>
-<form action="{% url 'forum:add_thread' %}" method="post">
+<form method="post">
 	{% csrf_token %}
 	<div class="add_thread_forum">{{form.forum}}</div>
 	<div class="add_thread_title">{{form.title}}</div>

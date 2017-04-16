@@ -81,6 +81,24 @@ html, body{
 			padding: 0px;
 			margin: 0 auto;	
 		}
+		.createThread a{
+			position: absolute;
+			text-align: center;
+			color: white;
+			margin-top: 50px;
+			padding: 4px 28px;
+			left: 25px;
+			top: 0px;
+			border: 1px black solid;
+			border-radius: 2px;
+			background: #413F3F;
+		}
+		.createThread a:hover{
+			background-color: #252525;
+			color: white;
+			text-decoration: none;
+			/*color: #FFA60B;*/
+		}
 		.headerLogin ul{
 			list-style-type: none;
 			margin: 0;

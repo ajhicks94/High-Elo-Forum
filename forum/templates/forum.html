@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
-
 <div class="mainHeader"><h3>{{forum.name}}</h3></div>
+<div class="createThread"><h4><a href="{{ request.get_full_path }}create_thread">Create a new thread!</a></h4></div>
 <div class="threads">
 {% if thread_list %}
 	<ul>
@@ -21,4 +21,6 @@
   <p style="text-indent: 20px">No threads created yet.</p>
 {% endif %}
 </div>
+
+
 {% endblock content %}
