@@ -3,18 +3,13 @@
 <div class="mainHeader">
 	<h3><a href="{% url 'forum:forum' thread.forum.pk thread.forum.slug %}">{{ thread.forum.name }}</a>: {{ thread.title }}</h3>
 </div>
-	<small><i>Started by {{thread.author}}, {{ thread.created }}</i></small>
-	{% if post_list %}
-		<ul>
-			<li>{{ thread.body }}</li>
-			<small>{{ thread.created }}</small>
-			{% for post in post_list %}
-				<li>{{ post.body }}</li>
-				<small>{{ post.created }}</small>
-			{% endfor %}
-		</ul>
-	{% else %}
- 	 <p>No posts in this thread yet.</p>
-	{% endif %}
-
+<small><i>Started by {{thread.author}}, {{ thread.created }}</i></small>
+<ul>
+	<li>{{ thread.body }}</li>
+	<small>{{ thread.created }}</small>
+	{% for post in post_list %}
+		<li>{{ post.body }}</li>
+		<small>{{ post.created }}</small>		
+	{% endfor %}
+</ul>
 {% endblock content %}
