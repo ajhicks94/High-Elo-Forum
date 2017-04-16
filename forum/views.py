@@ -55,6 +55,9 @@ class AddThread(generic.FormView):
         #new_Thread = Thread(title=form.fields['title'], body=form.fields['body'],
         #                    forum=get_object_or_404(Forum, name=form.fields['forum'].name), author='Admin')
 
+        data = form.cleaned_data
+        print("data[title]=", data['title'])
+        new_thread = Thread(title=data['title'], body=data['body'], forum=data['forum'], author=get_object_or_404(User, name='Admin'))
+        new_thread.save()
+        print("Thread saved.")
         return super(AddThread, self).form_valid(form)
-
-
