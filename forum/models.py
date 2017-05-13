@@ -37,7 +37,7 @@ class Category(models.Model): #ie. Junkies, Non-Junkies
 class Forum(models.Model): #ie. Ask a Gladiator -> General Questions, LoL -> Guides
 
     name         = models.CharField(max_length=50)
-    slug         = models.SlugField(max_length=55, editable=True)
+    slug         = models.SlugField(max_length=55, editable=False)
     category     = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="forums")
     position     = models.IntegerField(default=0)
     description  = models.CharField(max_length=255, default='Description goes here')
