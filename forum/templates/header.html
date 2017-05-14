@@ -2,8 +2,9 @@
 <div class="header">
 	<div class="headerLogin">
 		<ul>
-			<li><a href="{% url 'forum:category' %}">Log In</a></li>
-			<li><a href="{% url 'forum:category' %}">Sign Up</a></li>
+			<li><a href="{% url 'forum:login' %}">Log In</a></li>
+			<li><a href="{% url 'forum:create_user' %}">Sign Up</a></li>
+            <li><a href="{% url 'forum:logout' %}">Log Out</a><li>
 		</ul>
 	</div>
 	<h1><a href="{% url 'forum:category'%}">High-Elo Forum</a></h1>

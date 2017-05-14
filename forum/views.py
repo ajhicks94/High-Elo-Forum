@@ -3,9 +3,9 @@ from django.http import HttpResponseRedirect
 from django.views import generic
 from django.utils import timezone
 from django.contrib.auth.models import User
-
+from django.urls import reverse_lazy
 from .models import Category, Forum, Thread, Post
-from .forms import ThreadForm
+from .forms import ThreadForm, CreateUserForm
 
 #TODO: CLEAN UP OVER-IMPORTED LIBRARIES/ITEMS 
 
@@ -46,6 +46,17 @@ class PostList(generic.ListView):
     def get_queryset(self):
         return Post.objects.filter(thread=self.kwargs['pk'])
 
+class CreateUser(generic.FormView):
+    form_class = CreateUserForm
+    template_name = 'create_user.html'
+    
+    success_url = reverse_lazy('forum:category')
+
+    def form_valid(self, form):
+        data = form.cleaned_data
+        new_user = User.objects.create_user(username=data['username'], password=data['password'], email=data['email'])
+        return super(CreateUser, self).form_valid(form)
+
 class AddThread(generic.FormView):
     form_class = ThreadForm
     success_url = '/forum/'
@@ -63,7 +74,7 @@ class AddThread(generic.FormView):
         #TODO: GRAB LOGGED IN USER AND SET AS THREAD AUTHOR INSTEAD OF ADMIN
         data = form.cleaned_data
         new_thread = Thread(title=data['title'], body=data['body'], forum=data['forum'], 
-                            author=get_object_or_404(User, username='admin'))
+                            author=get_object_or_404(User, id=self.request.user.id))
         new_thread.save()
         self.success_url = '/forum/thread/' + str(new_thread.id) + '-' + new_thread.slug
         return super(AddThread, self).form_valid(form)

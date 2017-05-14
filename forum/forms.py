@@ -1,5 +1,6 @@
 from django import forms
 from .models import Thread, Forum
+from django.contrib.auth.models import User
 
 class ThreadForm(forms.ModelForm):
     class Meta:
@@ -9,4 +10,14 @@ class ThreadForm(forms.ModelForm):
                 'title': forms.TextInput(attrs={'value': 'Title'}), 
                 'body': forms.Textarea(attrs={'value': 'Body'}),
         }
-        #TODO: make forum field default to whichever forum the user clicked "Create New Thread" on
+
+class CreateUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password', 'email']
+        widgets = {
+                'username': forms.TextInput(attrs={'placeholder': 'choose a username'}),
+                'password': forms.TextInput(attrs={'placeholder': 'enter password'}),
+                #'verify_password': forms.TextInput(attrs={'placeholder': 'verify password'}),
+                'email': forms.TextInput(attrs={'placeholder': 'email'}),
+        }
