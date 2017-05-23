@@ -72,6 +72,10 @@ class AddThread(generic.FormView):
     #Creates a new thread with appropriate attributes
     def form_valid(self, form):
         data = form.cleaned_data
+        if not self.request.user.is_authenticated():
+            #TODO: Show user that they must be logged in first
+            return super(AddThread, self).form_valid(form)
+
         new_thread = Thread(title=data['title'], body=data['body'], forum=data['forum'], 
                             author=get_object_or_404(User, id=self.request.user.id))
         new_thread.save()
