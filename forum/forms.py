@@ -17,7 +17,7 @@ class CreateUserForm(forms.ModelForm):
         fields = ['username', 'password', 'email']
         widgets = {
                 'username': forms.TextInput(attrs={'placeholder': 'choose a username'}),
-                'password': forms.TextInput(attrs={'placeholder': 'enter password'}),
+                'password': forms.PasswordInput(attrs={'placeholder': 'enter password'}),
                 #'verify_password': forms.TextInput(attrs={'placeholder': 'verify password'}),
                 'email': forms.TextInput(attrs={'placeholder': 'email'}),
         }
