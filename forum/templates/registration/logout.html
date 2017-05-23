@@ -2,7 +2,6 @@
 
 {% block content %}
 	<div class="mainHeader"><h2>Log In</h2></div>
-
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

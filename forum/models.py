@@ -62,7 +62,7 @@ class Thread(models.Model): #ie. FULL GUIDE TO HOW TO BEAT DARIUS THE COCKMUNCHE
     forum      = models.ForeignKey(Forum, on_delete=models.CASCADE, related_name="threads")
     author     = models.ForeignKey(settings.AUTH_USER_MODEL)
     title      = models.CharField(max_length=90)
-    body       = models.TextField(default="Body")
+    body       = models.TextField()
     slug       = models.SlugField(max_length=95, editable=True)
     created    = models.DateTimeField(auto_now_add=True)
     modified   = models.DateTimeField(auto_now=True)

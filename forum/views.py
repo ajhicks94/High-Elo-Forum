@@ -71,7 +71,6 @@ class AddThread(generic.FormView):
 
     #Creates a new thread with appropriate attributes
     def form_valid(self, form):
-        #TODO: GRAB LOGGED IN USER AND SET AS THREAD AUTHOR INSTEAD OF ADMIN
         data = form.cleaned_data
         new_thread = Thread(title=data['title'], body=data['body'], forum=data['forum'], 
                             author=get_object_or_404(User, id=self.request.user.id))

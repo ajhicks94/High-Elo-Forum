@@ -7,8 +7,8 @@ class ThreadForm(forms.ModelForm):
         model = Thread
         fields = ['forum', 'title', 'body']
         widgets = {
-                'title': forms.TextInput(attrs={'value': 'Title'}), 
-                'body': forms.Textarea(attrs={'value': 'Body'}),
+                'title': forms.TextInput(attrs={'placeholder': 'Title'}), 
+                'body': forms.Textarea(attrs={'placeholder': "Body"}),
         }
 
 class CreateUserForm(forms.ModelForm):
