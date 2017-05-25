@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.db.models import F
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 from django.conf import settings
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
@@ -72,6 +74,9 @@ class Thread(models.Model): #ie. FULL GUIDE TO HOW TO BEAT DARIUS THE COCKMUNCHE
     def increase_thread_count(self):
         Forum.objects.filter(pk=self.forum.pk).update(thread_count=F('thread_count') + 1)
 
+    def decrease_thread_count(self):
+        Forum.objects.filter(pk=self.forum.pk).update(thread_count=F('thread_count') - 1)
+
     def save(self, *args, **kwargs):
         if not self.pk:
             self.increase_thread_count()
@@ -103,12 +108,15 @@ class Post(models.Model): #Wow I never thought about it this way man, great job!
             super(Post, self).save(*args, **kwargs)
         else:
             super(Post, self).save(*args, **kwargs)
-
-#    def delete(self, *args, **kwargs):
-#        self.decrease_post_count()
-#        print("post count decreased")
-#        super(Post, self).delete()
-
+            
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
+        
+@receiver(post_delete, sender=Post)
+def delete_post(sender, instance, **kwargs):
+    instance.decrease_post_count()
+
+@receiver(post_delete, sender=Thread)
+def delete_thread(sender, instance, **kwargs):
+    instance.decrease_thread_count()
