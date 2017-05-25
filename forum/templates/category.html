@@ -11,8 +11,15 @@
 				    <ul>
 							<div class="catForums">
 					    	{% for forum in category.forums.all %}
-								<li><a href="{% url 'forum:forum' forum.id forum.slug %}">{{forum.name}}</a><br>
-									<small><i>{{forum.description}}</i></small></li>
+                            <li><a href="{% url 'forum:forum' forum.id forum.slug %}">{{forum.name}}</a> - 
+                                {% if forum.thread_count == 1 %}
+                                    {{forum.thread_count}} thread.
+                                {% else %}
+                                    {{forum.thread_count}} threads.
+                                {% endif %}
+                                <br>
+								<small><i>{{forum.description}}</i></small>
+                            </li>
 						    {% endfor %}
 							</div>
 				    </ul>

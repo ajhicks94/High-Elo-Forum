@@ -69,8 +69,12 @@ class Thread(models.Model): #ie. FULL GUIDE TO HOW TO BEAT DARIUS THE COCKMUNCHE
     post_count = models.IntegerField(default=0)
     sticky     = models.BooleanField(default=False)
 
+    def increase_thread_count(self):
+        Forum.objects.filter(pk=self.forum.pk).update(thread_count=F('thread_count') + 1)
+
     def save(self, *args, **kwargs):
         if not self.pk:
+            self.increase_thread_count()
             self.slug = slugify(self.title)
             super(Thread, self).save(*args, **kwargs)
         else:
