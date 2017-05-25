@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="mainHeader">
+    <h3>Create Post</h3>
+    <div class="createThread">
+        <h5><a href="{{ request.path|slice:":-12" }}">Go Back</a></h5>
+    </div>
+</div>
+<form method="post">
+	{% csrf_token %}
+	<div class="add_post_thread">{{form.thread}}</div>
+	<div class="add_post_body">{{form.body}}</div>
+	<input type="submit" value="Submit" />
+</form>
+
+{% endblock content%}

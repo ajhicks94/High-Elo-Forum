@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from .models import Category, Forum, Thread, Post
-from .forms import ThreadForm, CreateUserForm
+from .forms import ThreadForm, CreateUserForm, PostForm
 
 #TODO: CLEAN UP OVER-IMPORTED LIBRARIES/ITEMS 
 
@@ -56,6 +56,31 @@ class CreateUser(generic.FormView):
         data = form.cleaned_data
         new_user = User.objects.create_user(username=data['username'], password=data['password'], email=data['email'])
         return super(CreateUser, self).form_valid(form)
+
+class AddPost(generic.FormView):
+    form_class = PostForm
+    template_name = 'add_post.html'
+    success_url = '/forum/'
+
+    def get_form(self):
+        form = super(AddPost, self).get_form()
+        form.fields['thread'].queryset = Thread.objects.filter(pk=self.kwargs['pk'])
+        form.initial['thread'] = get_object_or_404(Thread, pk=self.kwargs['pk'])
+        return form
+
+    def form_valid(self, form):
+        data = form.cleaned_data
+        if not self.request.user.is_authenticated():
+            return super(AddPost, self).form_valid(form)
+
+        current_user = get_object_or_404(User, id=self.request.user.id)
+
+        new_post = Post(thread=data['thread'], author=current_user, body=data['body'])
+
+        new_post.save()
+        self.success_url = '/forum/thread/' + str(new_post.thread.id) + '-' + new_post.thread.slug
+
+        return super(AddPost, self).form_valid(form)
 
 class AddThread(generic.FormView):
     form_class = ThreadForm

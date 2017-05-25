@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^thread/(?P<pk>[0-9]+)-(?P<slug>[\w-]+)/$', views.PostList.as_view(), name='thread'),
    # url(r'^create_post/$', views.AddPost.as_view(), name='name'),
     url(r'^(?P<pk>[0-9]+)-(?P<slug>[\w-]+)/create_thread/$', views.AddThread.as_view(), name='add_thread'),
+    url(r'^thread/(?P<pk>[0-9]+)-(?P<slug>[\w-]+)/create_post/$', views.AddPost.as_view(), name='add_post'),
     url(r'^create_user/$', views.CreateUser.as_view(), name='create_user'),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),

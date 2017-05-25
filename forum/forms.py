@@ -1,5 +1,5 @@
 from django import forms
-from .models import Thread, Forum
+from .models import Thread, Forum, Post
 from django.contrib.auth.models import User
 
 class ThreadForm(forms.ModelForm):
@@ -11,6 +11,13 @@ class ThreadForm(forms.ModelForm):
                 'body': forms.Textarea(attrs={'placeholder': "Body"}),
         }
 
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['thread', 'body']
+        widgets = {
+                'body': forms.Textarea(attrs={'placeholder': "Enter your response"}),
+        }
 class CreateUserForm(forms.ModelForm):
     class Meta:
         model = User
