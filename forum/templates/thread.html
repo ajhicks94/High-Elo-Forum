@@ -6,13 +6,12 @@
         <h5><a href="{{ request.get_full_path }}create_post">Write a response!</a></h5>
     </div>
 </div>
-<small><i>Started by {{thread.author}}, {{ thread.created }}</i></small>
 <ul>
 	<li>{{ thread.body }}</li>
-	<small>{{ thread.created }}</small>
+    <small><i>by {{thread.author}} on {{ thread.created }}</i></small>
 	{% for post in post_list %}
 		<li>{{ post.body }}</li>
-		<small>{{ post.created }}</small>		
+        <small><i>by {{post.author}} on {{ post.created }}</i></small>		
 	{% endfor %}
 </ul>
 {% endblock content %}
