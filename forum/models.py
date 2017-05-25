@@ -43,8 +43,8 @@ class Forum(models.Model): #ie. Ask a Gladiator -> General Questions, LoL -> Gui
     category     = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="forums")
     position     = models.IntegerField(default=0)
     description  = models.CharField(max_length=255, default='Description goes here')
-    post_count   = models.IntegerField(default=0)
-    thread_count = models.IntegerField(default=0)
+    post_count   = models.IntegerField(default=0, editable=False)
+    thread_count = models.IntegerField(default=0, editable=False)
 
     #def get_post_count(self):
         #post_count = SUM OF POST COUNT OF ALL THREADS
