@@ -7,11 +7,15 @@
         <h5><a href="{{ request.path|slice:":-12" }}">Go Back</a></h5>
     </div>
 </div>
+{% if not user.is_authenticated %}
+    You must log in before posting a reply.
+{% else %}
 <form method="post">
 	{% csrf_token %}
 	<div class="add_post_thread">{{form.thread}}</div>
 	<div class="add_post_body">{{form.body}}</div>
 	<input type="submit" value="Submit" />
 </form>
+{% endif %}
 
 {% endblock content%}

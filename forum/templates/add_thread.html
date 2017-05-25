@@ -7,6 +7,9 @@
         <h5><a href="{{ request.path|slice:":-14" }}">Go Back</a></h5>
     </div>
 </div>
+{% if not user.is_authenticated %}
+    You must log in before starting a thread.
+{% else %}
 <form method="post">
 	{% csrf_token %}
 	<div class="add_thread_forum">{{form.forum}}</div>
@@ -14,5 +17,6 @@
 	<div class="add_thread_body">{{form.body}}</div>
 	<input type="submit" value="Submit" />
 </form>
+{% endif %}
 
 {% endblock content%}
