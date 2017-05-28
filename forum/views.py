@@ -9,6 +9,10 @@ from .forms import ThreadForm, CreateUserForm, PostForm
 
 #TODO: CLEAN UP OVER-IMPORTED LIBRARIES/ITEMS 
 
+class LogOut(generic.ListView):
+    template_name = 'logged_out.html'
+    model = Forum
+
 #need to show the categories and their subforums
 class CategoryIndex(generic.ListView):
     model = Forum
