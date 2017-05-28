@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="mainHeader">
-	<h3><a href="{% url 'forum:forum' thread.forum.pk thread.forum.slug %}">{{ thread.forum.name }}</a>: {{ thread.title }}</h3>
+	<h3><a href="{% url 'forum:forum' thread.forum.pk thread.forum.slug %}">{{ thread.forum.name }}</a></h3>
     <div class="createThread">
         <h5><a href="{{ request.get_full_path }}create_post">Write a response!</a></h5>
     </div>
 </div>
 <ul>
-	<li>{{ thread.body }}</li>
+    <h3>{{ thread.title }}</h3>
+	<li >{{ thread.body }}</li>
     <small><i>by {{thread.author}} on {{ thread.created }}</i></small>
 	{% for post in post_list %}
 		<li>{{ post.body }}</li>
