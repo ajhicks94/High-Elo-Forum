@@ -8,7 +8,6 @@ urlpatterns = [
     url(r'^$', views.CategoryIndex.as_view(), name='category'), #shows all categories and their forums
     url(r'^(?P<pk>[0-9]+)-(?P<slug>[\w-]+)/$', views.ThreadList.as_view(), name='forum'), #shows the forum and its threads
     url(r'^thread/(?P<pk>[0-9]+)-(?P<slug>[\w-]+)/$', views.PostList.as_view(), name='thread'),
-   # url(r'^create_post/$', views.AddPost.as_view(), name='name'),
     url(r'^(?P<pk>[0-9]+)-(?P<slug>[\w-]+)/create_thread/$', views.AddThread.as_view(), name='add_thread'),
     url(r'^thread/(?P<pk>[0-9]+)-(?P<slug>[\w-]+)/create_post/$', views.AddPost.as_view(), name='add_post'),
     url(r'^create_user/$', views.CreateUser.as_view(), name='create_user'),

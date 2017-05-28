@@ -3,7 +3,7 @@
 	<div class="headerLogin">
 		<ul>
             {% if not user.is_authenticated %}
-			    <li><a href="{% url 'forum:login' %}">Log In</a></li>
+            <li><a href="{% url 'forum:login' %}?next={{request.path}}">Log In</a></li>
 			    <li><a href="{% url 'forum:create_user' %}">Sign Up</a></li>
             {% else %}
                 <li><a>{{ user.username }}</a></li>
