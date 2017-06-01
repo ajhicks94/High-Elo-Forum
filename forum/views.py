@@ -4,7 +4,7 @@ from django.views import generic
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
-from .models import Category, Forum, Thread, Post
+from .models import Category, Forum, Thread, Post, Profile
 from .forms import ThreadForm, CreateUserForm, PostForm
 
 #TODO: CLEAN UP OVER-IMPORTED LIBRARIES/ITEMS 
@@ -12,6 +12,16 @@ from .forms import ThreadForm, CreateUserForm, PostForm
 class LogOut(generic.ListView):
     template_name = 'logged_out.html'
     model = Forum
+
+class ProfileView(generic.ListView):
+    template_name = 'profile.html'
+    model = Profile
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        user1 = get_object_or_404(User, id=self.kwargs['pk'])
+        context['user1'] = user1
+        return context
 
 #need to show the categories and their subforums
 class CategoryIndex(generic.ListView):

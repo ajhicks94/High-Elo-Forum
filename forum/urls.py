@@ -6,6 +6,7 @@ app_name = 'forum'
 urlpatterns = [
 
     url(r'^$', views.CategoryIndex.as_view(), name='category'), #shows all categories and their forums
+    url(r'^user/(?P<pk>[0-9]+)/$', views.ProfileView.as_view(), name='profile'),
     url(r'^(?P<pk>[0-9]+)-(?P<slug>[\w-]+)/$', views.ThreadList.as_view(), name='forum'), #shows the forum and its threads
     url(r'^thread/(?P<pk>[0-9]+)-(?P<slug>[\w-]+)/$', views.PostList.as_view(), name='thread'),
     url(r'^(?P<pk>[0-9]+)-(?P<slug>[\w-]+)/create_thread/$', views.AddThread.as_view(), name='add_thread'),
