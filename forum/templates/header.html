@@ -6,7 +6,7 @@
             <li><a href="{% url 'forum:login' %}?next={{request.path}}">Log In</a></li>
 			    <li><a href="{% url 'forum:create_user' %}">Sign Up</a></li>
             {% else %}
-            <li><a href="{% url 'forum:profile' user.pk %}">{{ user.username }}</a></li>
+                <li><a href="{% url 'forum:profile' user.pk %}">{{ user.username }}</a></li>
                 <li><a href="{% url 'forum:logout' %}">Log Out</a></li>
             {% endif %}
 		</ul>
