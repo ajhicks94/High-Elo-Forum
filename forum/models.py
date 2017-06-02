@@ -6,6 +6,10 @@ from django.dispatch import receiver
 from django.conf import settings
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
+
+def get_sentinel_user():
+    return User.objects.get_or_create(username='[deleted]')[0]
 
 class Profile(models.Model):
 
@@ -24,7 +28,7 @@ class Profile(models.Model):
     def increase_post_count(self):
         Profile.objects.filter(pk=self.pk).update(post_count=F('post_count') + 1)
 
-class Category(models.Model): #ie. Junkies, Non-Junkies
+class Category(models.Model):
 
     name     = models.CharField(max_length=70)
     position = models.IntegerField(default=0)
@@ -36,7 +40,7 @@ class Category(models.Model): #ie. Junkies, Non-Junkies
     def __str__(self):
         return self.name
 
-class Forum(models.Model): #ie. Ask a Gladiator -> General Questions, LoL -> Guides
+class Forum(models.Model):
 
     name         = models.CharField(max_length=50)
     slug         = models.SlugField(max_length=55, editable=False)
@@ -62,7 +66,7 @@ class Forum(models.Model): #ie. Ask a Gladiator -> General Questions, LoL -> Gui
 class Thread(models.Model): #ie. FULL GUIDE TO HOW TO BEAT DARIUS THE COCKMUNCHER
     
     forum      = models.ForeignKey(Forum, on_delete=models.CASCADE, related_name="threads")
-    author     = models.ForeignKey(settings.AUTH_USER_MODEL)
+    author     = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET(get_sentinel_user))
     title      = models.CharField(max_length=90)
     body       = models.TextField()
     slug       = models.SlugField(max_length=95, editable=True)
@@ -88,10 +92,10 @@ class Thread(models.Model): #ie. FULL GUIDE TO HOW TO BEAT DARIUS THE COCKMUNCHE
     def __str__(self):
         return self.title
 
-class Post(models.Model): #Wow I never thought about it this way man, great job!
+class Post(models.Model):
 
     thread   = models.ForeignKey(Thread, on_delete=models.CASCADE)
-    author   = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    author   = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET(get_sentinel_user))
     created  = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     body     = models.TextField()
