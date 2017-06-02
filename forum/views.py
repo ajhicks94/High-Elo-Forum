@@ -19,8 +19,8 @@ class ProfileView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
-        user1 = get_object_or_404(User, id=self.kwargs['pk'])
-        context['user1'] = user1
+        prof = get_object_or_404(Profile, user=User.objects.filter(pk=self.kwargs['pk']))
+        context['prof'] = prof
         return context
 
 #need to show the categories and their subforums
@@ -69,6 +69,8 @@ class CreateUser(generic.FormView):
     def form_valid(self, form):
         data = form.cleaned_data
         new_user = User.objects.create_user(username=data['username'], password=data['password'], email=data['email'])
+        new_profile = Profile(user=new_user)
+        new_profile.save()
         return super(CreateUser, self).form_valid(form)
 
 class AddPost(generic.FormView):

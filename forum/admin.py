@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Forum, Thread, Post
+from .models import Category, Forum, Thread, Post, Profile
 
 class PostInlineAdmin(admin.TabularInline):
     model = Post
@@ -18,6 +18,10 @@ class ThreadAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     list_display = ('id', 'thread', 'author', 'created', 'modified')
 
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'group', 'post_count', 'rep_count', 'server', 'rank')
+
+admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Forum, ForumAdmin)
 admin.site.register(Thread, ThreadAdmin)
