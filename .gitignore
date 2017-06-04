@@ -1,5 +1,7 @@
 *.sqlite3
 *__pycache__
+HEF/__pycache__*
+*__init__.cpython*
 *.pyc
 *.swp
 forum/migrations/
