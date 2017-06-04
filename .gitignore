@@ -1,10 +1,11 @@
 *.sqlite3
 *__pycache__
-HEF/__pycache__*
+*.gitignore
+*HEF/__pycache__*
 *__init__.cpython*
 *.pyc
 *.swp
-forum/migrations/
+*forum/migrations/
+*forum/migrations/*
 *.stackdump
 *.vscode
-*.gitignore
